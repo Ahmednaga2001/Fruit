@@ -6,7 +6,7 @@ dropDown.addEventListener("click", ()=>{
     ul.classList.toggle("hidden");
 });
 const removeParent = (e) => {
-    console.log(e.target); // This should log the button element
+    console.log(e.target);
     e.target.parentElement.parentElement.parentElement.remove();
 }
 
