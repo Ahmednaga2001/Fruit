@@ -5,9 +5,10 @@ let ul =  document.querySelector(".dropdown ul");
 dropDown.addEventListener("click", ()=>{
     ul.classList.toggle("hidden");
 });
-
-
-
+const removeParent = (e) => {
+    console.log(e.target); // This should log the button element
+    e.target.parentElement.parentElement.parentElement.remove();
+}
 
 let cards = document.querySelector(".cards");
 const getProducts = JSON.parse(localStorage.getItem("products"))
@@ -16,12 +17,9 @@ console.log(getProducts);
     
 
 const remove = (i)=>{
-    console.log(i);
-    console.log(getProducts.splice(i,1));
     getProducts.splice(i,1)
     localStorage.setItem("products" , JSON.stringify(getProducts))
     window.location.reload()
-    console.log(getProducts);
 }
 
 for(let i = 0 ; i<getProducts.length ; i++){
