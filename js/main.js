@@ -11,7 +11,7 @@ dropDown.addEventListener("click", ()=>{
 let addButton = document.querySelector(".add-product");
 
 addButton.addEventListener("click", ()=>{
-    window.location.href = "/modal.html"
+    window.location.href = "modal.html"
 });
 
 let cards = document.querySelector(".cards");
