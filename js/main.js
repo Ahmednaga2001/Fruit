@@ -8,11 +8,11 @@ dropDown.addEventListener("click", ()=>{
 
 
 
-let addButton = document.querySelector(".add-product");
+// let addButton = document.querySelector(".add-product");
 
-addButton.addEventListener("click", ()=>{
-    window.location.href = "modal.html"
-});
+// addButton.addEventListener("click", ()=>{
+//     window.location.href = "modal.html"
+// });
 
 let cards = document.querySelector(".cards");
 const getProducts = JSON.parse(localStorage.getItem("products"))
