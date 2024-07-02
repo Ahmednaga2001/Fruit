@@ -1,12 +1,15 @@
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-const menuOpenIcon = document.getElementById('menu-open-icon');
-const menuCloseIcon = document.getElementById('menu-close-icon');
+// Start Navbar
+let dropDown =  document.querySelector(".bars-icon");
+let ul =  document.querySelector(".dropdown ul");
 
-mobileMenuButton.addEventListener('click', () => {
-  const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-  mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-  mobileMenu.classList.toggle('hidden');
-  menuOpenIcon.classList.toggle('hidden');
-  menuCloseIcon.classList.toggle('hidden');
+dropDown.addEventListener("click", ()=>{
+    ul.classList.toggle("hidden");
+});
+
+
+
+let addButton = document.querySelector(".add-product");
+
+addButton.addEventListener("click", ()=>{
+    window.location.href = "/modal.html"
 });
