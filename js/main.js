@@ -1,21 +1,26 @@
-// Start Navbar
-let dropDown =  document.querySelector(".bars-icon");
-let ul =  document.querySelector(".dropdown ul");
 
-dropDown.addEventListener("click", ()=>{
-    ul.classList.toggle("hidden");
-});
+let barsIcon = document.querySelector(".bars-icon");
+let icon = document.querySelector(".bars-icon i");
+let dropDown = document.querySelector(".dropdown-menu");
+
+
+function barsIconClick (){
+        dropDown.classList.toggle("animation");
+    
+        if(dropDown.classList.contains("animation")){
+            icon.classList.replace("fa-bars", "fa-x");
+        }else{
+            icon.classList.replace("fa-x", "fa-bars")
+        }
+}
+
 
 let cards = document.querySelector(".cards");
 const getProducts = JSON.parse(localStorage.getItem("products"))
 
     
 
-const remove = (i)=>{
-    getProducts.splice(i,1)
-    localStorage.setItem("products" , JSON.stringify(getProducts))
-    window.location.reload()
-}
+
 for(let i = 0 ; i<getProducts.length ; i++){
     let card =  `<div class="card bg-[#494747ab] mx-auto md:mx-0 max-w-sm md:max-w-lg rounded-md overflow-hidden ">
               <img src=${getProducts[i].url} class="w-full h-[300px]" alt="" srcset="">
@@ -26,13 +31,12 @@ for(let i = 0 ; i<getProducts.length ; i++){
             </div>
             <p class="">${getProducts[i].desc}</p>
             <span class="block">${getProducts[i].price}</span>
-            <div class="buttons flex gap-4 ">
-            <div class="quantity border w-full flex justify-evenly p-1">
-                <button><i class="fa-solid fa-plus"></i></button>
-                <span>1</span>
-                <button><i class="fa-solid fa-minus"></i></button>
-            </div>
-            <button class="w-full bg-red-500" onClick=remove(${i})>Remove</button>
+       
+          <div class="buttons flex gap-4">
+            <button class="w-full bg-red-500 p-1" onClick="removeProduct(${i})">REMOVE</button>
+                        <button class="w-full p-1 bg-indigo-600" onClick="editProduct(${i})">EDIT</button>
+          </div>
+
             </div>
             </div>
         </div>
@@ -85,3 +89,30 @@ const removeFromFavourites = (i) => {
 
 // Show the initial products and favourite products
 showFavProducts();
+
+// Remove Product From Shoop And Favorite
+function removeProduct (i){
+    let checkIfProductExistInFavorite = favArr.some(el => el.name === getProducts[i].name);
+    if(checkIfProductExistInFavorite){
+        let indexOfCard = favArr.map((el, index)=>{
+            if(el.name === getProducts[i].name){
+                return index;
+            }else{
+                return;
+            }
+        }).join("");
+        favArr.splice(Number(indexOfCard), 1);
+        localStorage.setItem("favProducts", JSON.stringify(favArr));
+        window.location.reload()
+        
+    }
+    getProducts.splice(i, 1);
+    localStorage.setItem("products", JSON.stringify(getProducts));
+    window.location.reload()
+}
+
+const editProduct = (i)=>{
+console.log(getProducts[i])
+localStorage.setItem("edit-product" , JSON.stringify(getProducts[i]))
+location.href = "modal.html"
+}
